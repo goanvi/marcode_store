@@ -1,4 +1,11 @@
-import { Column, DataType, Model } from 'sequelize-typescript';
+import {
+  BelongsTo,
+  Column,
+  DataType,
+  ForeignKey,
+  Model,
+} from 'sequelize-typescript';
+import { User } from '../users/user.entity';
 
 export class Product extends Model {
   @Column
@@ -13,4 +20,9 @@ export class Product extends Model {
   price: number;
   @Column
   count: number;
+  @ForeignKey(() => User)
+  @Column
+  userId: number;
+  @BelongsTo(() => User)
+  user: User;
 }
